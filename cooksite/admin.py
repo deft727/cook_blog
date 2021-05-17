@@ -12,6 +12,8 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ["id","author","title","category","create_at"]
     list_display_links= ["id","author","title",]
     inlines = [RecipeInline]
+    save_as = True
+    save_on_top = True
 
 
 class RecipeAdmin(admin.ModelAdmin):

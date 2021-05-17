@@ -1,3 +1,33 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@deft727 
+DJWOMS
+/
+cook_blog
+1
+75
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+cook_blog/static/css/style.css
+@DJWOMS
+DJWOMS I added menu categories, recipes
+Latest commit 35ce395 9 days ago
+ History
+ 1 contributor
+3301 lines (2807 sloc)  55.9 KB
+  
 /******************************************************************
   Template Name: Foodeiblog
   Description:  Foodeiblog Blog HTML Template
@@ -9,7 +39,6 @@
 
 /*------------------------------------------------------------------
 [Table of contents]
-
 1.  Template default CSS
 	1.1	Variables
 	1.2	Mixins
@@ -405,6 +434,28 @@ ol {
 	opacity: 0;
 	visibility: hidden;
 	padding: 10px 0;
+}
+
+.header__menu ul li .children {
+	position: absolute;
+	left: 100px;
+	top: 62px;
+	width: 180px;
+	background: #222222;
+	z-index: 9;
+	text-align: left;
+	-webkit-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+	opacity: 0;
+	visibility: hidden;
+	padding: 10px 0;
+}
+
+.header__menu ul li:hover .children {
+	opacity: 1;
+	visibility: visible;
+	top: 41px;
 }
 
 .header__menu ul li .dropdown__menu li {
