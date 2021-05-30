@@ -35,6 +35,9 @@ class About(models.Model):
     def get_images(self):
         return self.about_images.order_by('-id')[1:]
 
+    def __str__(self):
+        return self.mini_text
+
 
 class ImageAbout(models.Model):
     '''Класс модели изображений  о нас '''
@@ -48,3 +51,6 @@ class Social(models.Model):
     icon = models.FileField(upload_to="icons/")
     name = models.CharField(max_length=200)
     link = models.URLField()
+
+    def __str__(self) -> str:
+        return self.name
