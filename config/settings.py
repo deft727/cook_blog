@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'mptt',
     'ckeditor',
     'cooksite',
+    'contact',
 ]
 
 MIDDLEWARE = [
