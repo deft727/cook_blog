@@ -3,8 +3,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.auth.models import User
 from django.urls import reverse
 from ckeditor.fields import RichTextField
-
-
+from django.utils import timezone
 
 class Category(MPTTModel):
     name = models.CharField(max_length=100)
@@ -52,8 +51,8 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("post_single",kwargs={"slug":self.category.slug,"post_slug":self.slug})
 
-    # def get_recipe(self):
-    #     return self.recipes
+    def get_comments(self):
+        return self.comment.all()
 
 
 class Recipe(models.Model):
@@ -73,11 +72,14 @@ class Recipe(models.Model):
         return self.name
 
 
+
+
 class Comment(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    website = models.CharField(max_length=150)
+    website = models.CharField(max_length=150,blank=True,null=True)
     message = models.TextField(max_length=500,help_text='Максимум 500 символов')
+    create_at = models.DateTimeField(default=timezone.now)
     post = models.ForeignKey(Post,related_name='comment',on_delete=models.CASCADE,)
 
     def __str__(self):

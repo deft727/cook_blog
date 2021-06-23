@@ -1,4 +1,4 @@
-{% load social_tags %}
+{% load social_tags static %}
 <header class="header">
   <div class="header__top">
     <div class="container">
@@ -23,19 +23,19 @@
     <div class="row">
       <div class="col-lg-3 col-md-3">
         <div class="header__btn">
-          <a href="./signin.html" class="primary-btn">Subscribe</a>
+          <a href="/" class="primary-btn">Subscribe</a>
         </div>
       </div>
       <div class="col-lg-6 col-md-6">
         <div class="header__logo">
-          <a href="./index.html"><img src="img/logo.png" alt=""></a>
+          <a href="/"><img src="{%static 'img/logo.png'%}" alt=""></a>
         </div>
       </div>
       <div class="col-lg-3 col-md-3">
         <div class="header__social">
           {% get_social_links as social_links %}
           {% for item in social_links %}
-            <a href="{{ item.link }}"><img class="contact_icon" src="{{ item.icon.url }}"></a>
+            <p><a href="{{ item.link }}"><img class="contact_icon" src="{{ item.icon.url }}"></a></p>
           {% endfor %}
         </div>
       </div>

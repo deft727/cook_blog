@@ -1,6 +1,8 @@
+from django import forms
 from django.shortcuts import render
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView,CreateView
 from .models import *
+from .forms import CommentForm
 
 
 class HomeView(ListView):
@@ -24,7 +26,22 @@ class PostDetailView(DetailView):
     context_object_name = 'post'
     template_name = 'blog/post_detail.html'
 
+    def get_context_data(self, **kwargs) :
+        context = super().get_context_data(**kwargs)
+        context['form'] = CommentForm()
+        
+        return context
 
 
-# def home(request):
-#     return render(request,'base.html')
+class CreateComment(CreateView):
+    model = Comment
+    form_class = CommentForm
+
+
+    def  form_valid(self, form):
+        form.instance.post_id = self.kwargs.get('pk')
+        self.object = form.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return self.object.post.get_absolute_url()
